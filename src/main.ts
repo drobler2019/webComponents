@@ -10,7 +10,7 @@ button.addEventListener('click', (event) => {
 
     const b = event.target as HTMLButtonElement;
 
-    if (app.querySelector('header-element')) {
+    if (app.querySelector('example-element')) {
         example.remove();
         b.textContent = 'Agregar';
         return;
