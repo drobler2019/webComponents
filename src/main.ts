@@ -1,7 +1,20 @@
 import { HeaderElement } from './components/header/Header';
-import { User } from './shared/models/User';
 import './style.css';
 
 const header = new HeaderElement();
 const app = document.querySelector<HTMLDivElement>('#app')!;
-app.append(header);
+app.innerHTML = '<button>Agregar</button>';
+const button = app.querySelector('button')!;
+
+button.addEventListener('click', (event) => {
+
+    const b = event.target as HTMLButtonElement;
+
+    if (app.querySelector('header-element')) {
+        header.remove();
+        b.textContent = 'Agregar';
+        return;
+    }
+    app.append(header);
+    b.textContent = 'Destruir';
+});

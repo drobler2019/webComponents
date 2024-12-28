@@ -8,20 +8,33 @@ export class HeaderElement extends HTMLElement {
     private aux = 0;
     private buttons: HTMLButtonElement[] = [];
 
+    /* este método se llama cuando se inserta el elemento en el DOM */
     connectedCallback(): void {
-        console.log('me insertaron');
         this.name = 'DIEGO'
         this.clone();
         this.buttons = Array.from(this.querySelectorAll('button')!);
-        this.buttons[0].addEventListener('click', this);
-        this.buttons[1].addEventListener('click', this);
+        const [add, remove] = this.buttons;
+        add.addEventListener('click', this);
+        remove.addEventListener('click', this);
+        console.log('Creando eventos...');
     }
 
+
+    /* destruir eventos de boton cuando se elimine el elemento en el DOM */
     disconnectedCallback(): void {
-        console.log('me eliminaron');
+        const [add, remove] = this.buttons;
+        add.removeEventListener('clck', this);
+        remove.removeEventListener('click', this);
+        console.log('Destruyendo eventos...');
     }
 
 
+    /* este método detecta cambios en un atributo de un custom element*/
+    static get observedAttributes() {
+        return ['name']
+    }
+
+    /* este método recibe la información antigua y nueva de los cambios detectados en su atributo */
     attributeChangedCallback(name: string, old: string, now: string) {
         const firstChild = this.firstElementChild!;
         const firstTextContent = firstChild.querySelector('#original')!.cloneNode(true);
@@ -50,7 +63,9 @@ export class HeaderElement extends HTMLElement {
         `;
     }
 
-    /* el método debe llamarse tal cual, handleEvent */
+    /* el método debe llamarse tal cual, handleEvent
+     este método recibirá el evento y podremos gestionarlo desde su interior
+    */
     handleEvent(event: MouseEvent): void {
         if (event.type === 'click') {
             this.modifyInformation(event);
@@ -65,7 +80,7 @@ export class HeaderElement extends HTMLElement {
             this.render();
             return;
         }
-        
+
         if (this.users.length > 0) {
             this.users.pop();
             this.aux--;
@@ -73,11 +88,6 @@ export class HeaderElement extends HTMLElement {
         }
 
     }
-
-    static get observedAttributes() {
-        return ['name']
-    }
-
 
     private createTextElement(user: User) {
         const p = document.createElement('p');
