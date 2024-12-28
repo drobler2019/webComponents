@@ -1,0 +1,15 @@
+section {
+  border: thin solid; 
+  border-radius: .5rem;
+  padding: 1rem;
+  inline-size: 300px;
+  margin: 2rem auto;
+  & strong {
+    color: red;
+    font-weight: bold;
+  }
+}
+
+h1 {
+  color: red;
+}
