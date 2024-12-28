@@ -1,7 +1,7 @@
-import { User } from '../../shared/models/User';
+import { User } from '../shared/models/User';
 import './header.css';
 
-export class HeaderElement extends HTMLElement {
+export class ExampleElement extends HTMLElement {
 
     private name!: string;
     private users: User[] = [];
@@ -114,4 +114,4 @@ export class HeaderElement extends HTMLElement {
 
 }
 
-customElements.define('header-element', HeaderElement);
+customElements.define('example-element', ExampleElement);

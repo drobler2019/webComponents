@@ -1,7 +1,7 @@
-import { HeaderElement } from './components/header/Header';
+import { ExampleElement } from './components/Header';
 import './style.css';
 
-const header = new HeaderElement();
+const example = new ExampleElement();
 const app = document.querySelector<HTMLDivElement>('#app')!;
 app.innerHTML = '<button>Agregar</button>';
 const button = app.querySelector('button')!;
@@ -11,10 +11,10 @@ button.addEventListener('click', (event) => {
     const b = event.target as HTMLButtonElement;
 
     if (app.querySelector('header-element')) {
-        header.remove();
+        example.remove();
         b.textContent = 'Agregar';
         return;
     }
-    app.append(header);
+    app.append(example);
     b.textContent = 'Destruir';
 });
