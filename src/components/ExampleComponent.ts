@@ -1,5 +1,5 @@
 import { User } from '../shared/models/User';
-import './header.css';
+import './ExampleComponent.css';
 
 export class ExampleElement extends HTMLElement {
 
