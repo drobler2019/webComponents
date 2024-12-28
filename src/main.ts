@@ -1,4 +1,4 @@
-import { ExampleElement } from './components/Header';
+import { ExampleElement } from './components/ExampleComponent';
 import './style.css';
 
 const example = new ExampleElement();
