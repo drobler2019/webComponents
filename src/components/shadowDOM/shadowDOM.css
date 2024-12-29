@@ -1,0 +1,6 @@
+.shadow-dom {
+    border: thin solid;
+    text-align: center;
+    max-inline-size: 800px;
+    margin: 2rem auto;
+}

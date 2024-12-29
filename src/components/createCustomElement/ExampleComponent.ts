@@ -1,4 +1,4 @@
-import { User } from '../shared/models/User';
+import { User } from '../../shared/models/User';
 import './ExampleComponent.css';
 
 export class ExampleElement extends HTMLElement {
