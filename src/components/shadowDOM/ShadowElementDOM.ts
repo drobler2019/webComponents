@@ -8,7 +8,10 @@ export class ExampleShadowDOM extends HTMLElement {
         super();
         this.attachShadow({ mode: "open" });
         /* hace referencia al light DOM (es la parte visible del DOM que fué tapado por el shado DOM) */
-        this.innerHTML = '<p style="color: red">contenido por defecto</p>';
+        this.innerHTML = /* html */
+            `
+        <p>contenido por defecto</p>
+        `;
     }
 
     connectedCallback(): void {
@@ -16,6 +19,11 @@ export class ExampleShadowDOM extends HTMLElement {
             .then(() => {
                 this.shadowRoot!.adoptedStyleSheets.push(this.sheet);
                 this.shadowRoot!.innerHTML = /* html */`
+                       <style>
+                        ::slotted(p) {
+                            color: hsl(154deg 10% 60%);
+                        }
+                       </style>
                        <div class="shadow-dom">
                           <h1>Hola usuario: <slot><p>desconocido</p></slot></h1>
                        </div>`;
@@ -29,4 +37,4 @@ export class ExampleShadowDOM extends HTMLElement {
 
 }
 
-customElements.define('example-shadow-doom', ExampleShadowDOM);
+customElements.define('example-shadow-dom', ExampleShadowDOM);
